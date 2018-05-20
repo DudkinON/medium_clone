@@ -54,6 +54,10 @@ class User(Base):
         """
         self.hash = pwd_context.encrypt(password)
 
+    def verify_password(self, password):
+        
+        return pwd_context.verify(password, self.hash)
+
 
 # create an engine
 engine = create_engine(connect)
