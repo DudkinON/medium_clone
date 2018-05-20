@@ -46,7 +46,12 @@ class User(Base):
     is_super_user = Column('is_super_user', Boolean, default=False)
 
     def hash_password(self, password):
+        """
+        Get string and hashing it
 
+        :param password: (str)
+        :return void:
+        """
         self.hash = pwd_context.encrypt(password)
 
 
