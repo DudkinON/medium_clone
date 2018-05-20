@@ -45,6 +45,10 @@ class User(Base):
     is_staff = Column('is_staff', Boolean, default=False)
     is_super_user = Column('is_super_user', Boolean, default=False)
 
+    def hash_password(self, password):
+
+        self.hash = pwd_context.encrypt(password)
+
 
 # create an engine
 engine = create_engine(connect)
