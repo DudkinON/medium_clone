@@ -74,6 +74,14 @@ class User(Base):
         return s.dumps({'uid': self.id})
 
 
+class Image(Base):
+    __tablename__ = 'image'
+    id = Column('id', Integer, primary_key=True)
+    url = Column('url', String(250))
+    created = Column('created', DateTime)
+    updated = Column('updated', DateTime)
+
+
 # create an engine
 engine = create_engine(connect)
 Base.metadata.create_all(engine)
