@@ -63,6 +63,11 @@ class User(Base):
         """
         return pwd_context.verify(password, self.hash)
 
+    def generate_auth_token(self, expiration=3600):
+        
+        s = Serializer(secret_key, expires_in=expiration)
+        return s.dumps({'uid': self.id})
+
 
 # create an engine
 engine = create_engine(connect)
