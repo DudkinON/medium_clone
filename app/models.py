@@ -81,6 +81,15 @@ class Image(Base):
     created = Column('created', DateTime)
     updated = Column('updated', DateTime)
 
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'url': self.url,
+            'created': self.created,
+            'updated': self.updated
+        }
+
 
 # create an engine
 engine = create_engine(connect)
