@@ -91,6 +91,11 @@ class Image(Base):
         }
 
 
+class Tag(Base):
+    __tablename__ = 'tag'
+    name = Column('name', String(50), primary_key=True)
+
+
 # create an engine
 engine = create_engine(connect)
 Base.metadata.create_all(engine)
