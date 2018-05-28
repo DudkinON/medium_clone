@@ -73,6 +73,20 @@ class User(Base):
         s = Serializer(secret_key, expires_in=expiration)
         return s.dumps({'uid': self.id})
 
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email,
+            'is_active': self.is_active,
+            'last_visit': self.last_visit,
+            'register_date': self.register_date,
+            'is_staff': self.is_staff,
+            'is_super_user': self.is_super_user
+        }
+
 
 class Image(Base):
     __tablename__ = 'image'
