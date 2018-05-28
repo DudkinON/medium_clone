@@ -105,6 +105,12 @@ class Image(Base):
         }
 
 
+association_table = Table('association', Base.metadata,
+                          Column('story_id', Integer, ForeignKey('story.id')),
+                          Column('tag_id', Integer, ForeignKey('tag.id'))
+                          )
+
+
 class Tag(Base):
     __tablename__ = 'tag'
     id = Column('id', Integer, primary_key=True)
