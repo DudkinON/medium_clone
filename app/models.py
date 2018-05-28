@@ -4,10 +4,10 @@
 from __future__ import unicode_literals
 
 from sqlalchemy import Column, String, Boolean, Integer, ForeignKey, DateTime
-from sqlalchemy import Text
+from sqlalchemy import Text, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, relationship
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from itsdangerous import BadSignature, SignatureExpired
 from passlib.apps import custom_app_context as pwd_context
@@ -24,12 +24,12 @@ connect = 'postgresql://{}:{}@{}/{}'.format(db['user'],
                                             db['host'],
                                             db['database'])
 
-
 # create session
 engine = create_engine(connect)
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+query = session.query
 
 
 class User(Base):
@@ -93,7 +93,11 @@ class Image(Base):
 
 class Tag(Base):
     __tablename__ = 'tag'
-    name = Column('name', String(50), primary_key=True)
+    id = Column('id', Integer, primary_key=True)
+    name = Column('name', String(50))
+    story = relationship("Child",
+                         secondary="association",
+                         backref="parents")
 
 
 # create an engine
