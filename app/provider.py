@@ -27,3 +27,8 @@ def create_user(email, password, first_name, last_name):
     session.add(user)
     session.commit()
     return user
+
+
+def get_user_by_id(uid):
+
+    return query(User).filter_by(id=int(uid)).first()
