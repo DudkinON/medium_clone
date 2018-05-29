@@ -119,6 +119,13 @@ class Tag(Base):
                          secondary="association",
                          backref="parents")
 
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name
+        }
+
 
 # create an engine
 engine = create_engine(connect)
