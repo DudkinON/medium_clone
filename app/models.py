@@ -127,6 +127,13 @@ class Tag(Base):
         }
 
 
+class Category(Base):
+    __tablename__ = 'category'
+    id = Column('id', Integer, primary_key=True)
+    name = Column('name', String(50))
+
+
+
 # create an engine
 engine = create_engine(connect)
 Base.metadata.create_all(engine)
