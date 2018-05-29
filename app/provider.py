@@ -6,6 +6,7 @@ query = session.query
 def get_user_by_email(email):
     """
     Return user by email or None
+
     :param email: String
     :return object:
     """
@@ -30,5 +31,10 @@ def create_user(email, password, first_name, last_name):
 
 
 def get_user_by_id(uid):
+    """
+    Return user by user id
 
+    :param uid: int
+    :return return:
+    """
     return query(User).filter_by(id=int(uid)).first()
