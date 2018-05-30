@@ -8,7 +8,12 @@ from string import ascii_uppercase as uppercase, digits
 
 
 def get_unique_str(amount):
-
+    """
+    Return a unique string
+    
+    :param amount: (int)
+    :return string:
+    """
     try:
         unique_string = (''.join(choice(uppercase + digits)
                                  for x in xrange(amount)))
